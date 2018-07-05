@@ -23,13 +23,13 @@ template<typename T1, typename T2>
 bool CreateBitmap(LPCSTR lpFileName, int g_nWidth, int g_nHeight, T1 paletteFunc, T2 pixelsFunc)
 {
     HANDLE hFile = ::CreateFileA(
-        lpFileName,						// pointer to name of the file
+        lpFileName,					    // pointer to name of the file
         GENERIC_READ | GENERIC_WRITE,   // access (read-write) mode
-        0,								// share mode 
-        NULL,							// pointer to security attributes 
-        CREATE_ALWAYS,					// how to create 
+        0,							    // share mode 
+        NULL,						    // pointer to security attributes 
+        CREATE_ALWAYS,				    // how to create 
         FILE_ATTRIBUTE_NORMAL,		    // file attributes 
-        NULL							// handle to file with attributes to copy
+        NULL						    // handle to file with attributes to copy
     );
     if (INVALID_HANDLE_VALUE == hFile)
         return false;
@@ -43,12 +43,12 @@ bool CreateBitmap(LPCSTR lpFileName, int g_nWidth, int g_nHeight, T1 paletteFunc
     int nTotalSize = DataOffset + g_nWidth * g_nHeight;
 
     HANDLE hFileMapping = ::CreateFileMapping(
-        hFile,			// handle to file to map 
-        NULL,			// optional security attributes 
+        hFile,		    // handle to file to map 
+        NULL,		    // optional security attributes 
         PAGE_READWRITE, // protection for mapping object 
-        0,				// high-order 32 bits of object size 
-        nTotalSize,		// low-order 32 bits of object size 
-        NULL			// name of file-mapping object 
+        0,			    // high-order 32 bits of object size 
+        nTotalSize,	    // low-order 32 bits of object size 
+        NULL		    // name of file-mapping object 
     );
     if (NULL == hFileMapping)
     {
@@ -233,7 +233,10 @@ int main(int argc, char* argv[])
     for (int i = 1; i < NUM_ATTEMPTS; ++i)
     {
         if (storedErrors[i] < minError)
+        {
+            minError = storedErrors[i];
             optimalIdx = i;
+        }
     }
 
     auto root = storedRoots[optimalIdx];
