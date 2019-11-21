@@ -3,7 +3,7 @@
 
 #include "kdtree.h"
 
-#include <boost/gil/extension/io/jpeg_io.hpp>
+#include <boost/gil/extension/io/jpeg.hpp>
 
 #include <iostream>
 
@@ -143,7 +143,7 @@ int main(int argc, char* argv[])
     }
 
     gil::rgb8_image_t img;
-    gil::jpeg_read_image(argv[1], img);
+    gil::read_image(argv[1], img, gil::jpeg_tag());
 
     enum { NUM_ATTEMPTS = 10 };
 
